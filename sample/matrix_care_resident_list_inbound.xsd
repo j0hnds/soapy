@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="MDSData" type="mdsVo"/>
+  <xs:complexType name="mdsVo">
+    <xs:sequence>
+      <xs:element name="residentId" type="xs:int"/>
+      <xs:element name="firstName" type="xs:string" minOccurs="0"/>
+      <xs:element name="lastName" type="xs:string" minOccurs="0"/>
+      <xs:element name="sex" type="xs:string" minOccurs="0"/>
+      <xs:element name="dateOfBirth" type="xs:string" minOccurs="0"/>
+      <xs:element name="medicalRecordNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="socialSecurityNumber" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
