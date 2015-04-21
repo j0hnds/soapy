@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   wash_out :matrix_cares
+  wash_out :origami_risks
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
