@@ -18,7 +18,7 @@ config/database.yml
 /log/*.log
 /tmp
 
-# Ignore the RVM junk
+# Ignore the RVM files
 .ruby-gemset
 .ruby-version
 
