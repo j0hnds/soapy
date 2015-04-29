@@ -2,6 +2,8 @@ class MedlineUsController < ApplicationController
 
   skip_before_action :verify_authenticity_token
 
+  before_action :validate_security_token
+
   def updateFacility
     request.body.rewind
 
@@ -69,6 +71,15 @@ class MedlineUsController < ApplicationController
     end
 
     render text: response_string, status: status
+  end
+
+  private
+
+  def validate_security_token
+    token = request.headers['HTTP_SECURITY_TOKEN']
+    if token.blank? || token != 'Test1234'
+      render text: "Invalid security token", status: 401
+    end
   end
 
 end
