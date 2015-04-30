@@ -21,27 +21,27 @@ class MedlineUsController < ApplicationController
       raise "'Must provide a facility identifier" unless request_hash['care_area_update_request'].has_key?('facility_identifier') && request_hash['care_area_update_request']['facility_identifier'].present?
       raise "'Must provide a care_areas element'" unless request_hash['care_area_update_request'].has_key?('care_areas')
 
-      facility_identifier = request_hash['care_area_update_request']['facility_identifier'].to_i
+      facility_identifier = request_hash['care_area_update_request']['facility_identifier']
       if request_hash['care_area_update_request']['care_areas'].present?
-        ca_ids = request_hash['care_area_update_request']['care_areas']['id']
+        ca_ids = request_hash['care_area_update_request']['care_areas']
       else
         ca_ids = []
       end
-      if facility_identifier > 100
+      if facility_identifier == 'snots'
         errors << "Facility #{facility_identifier} is not registered with MedlineU"
         successful = false
       end
       if ca_ids.present?
         if ca_ids.is_a?(Array)
           ca_ids.map { | sid | sid.to_i }.each do | id |
-            if id > 100
+            if id >= 46
               errors << "Care area #{id} is not registered with MedlineU"
               successful = false
             end
           end
         else
           id = ca_ids.to_i
-          if id > 100 
+          if id >= 46 
             errors << "Care area #{id} is not registered with MedlineU"
             successful = false
           end
