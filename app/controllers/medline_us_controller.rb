@@ -1,5 +1,7 @@
 class MedlineUsController < ApplicationController
 
+  MAXIMUM_CARE_AREA_ID = 46
+
   skip_before_action :verify_authenticity_token
 
   before_action :validate_security_token
@@ -34,14 +36,14 @@ class MedlineUsController < ApplicationController
       if ca_ids.present?
         if ca_ids.is_a?(Array)
           ca_ids.map { | sid | sid.to_i }.each do | id |
-            if id >= 46
+            if id >= MAXIMUM_CARE_AREA_ID
               errors << "Care area #{id} is not registered with MedlineU"
               successful = false
             end
           end
         else
           id = ca_ids.to_i
-          if id >= 46 
+          if id >= MAXIMUM_CARE_AREA_ID 
             errors << "Care area #{id} is not registered with MedlineU"
             successful = false
           end
