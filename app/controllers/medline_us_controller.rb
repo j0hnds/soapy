@@ -1,6 +1,7 @@
 class MedlineUsController < ApplicationController
 
   MAXIMUM_CARE_AREA_ID = 46
+  BAD_FACILITY_GOVID = 'snots'
 
   skip_before_action :verify_authenticity_token
 
@@ -29,7 +30,7 @@ class MedlineUsController < ApplicationController
       else
         ca_ids = []
       end
-      if facility_identifier == 'snots'
+      if facility_identifier == BAD_FACILITY_GOVID 
         errors << "Facility #{facility_identifier} is not registered with MedlineU"
         successful = false
       end
