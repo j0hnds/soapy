@@ -10,8 +10,6 @@ require 'pry'
 #client = Savon.client(wsdl: 'https://live.origamirisk.com/Origami.WebServices/ServiceLibrary.svc?wsdl')
 client = Savon::Client.new(wsdl: 'http://localhost:3000/origami_risks/wsdl')
 
-
-
 ops = client.operations
 
 puts "Operations: #{ops}"
@@ -21,3 +19,8 @@ token = client.call(:create_session_token, message: { :account => "Prestige", :c
 
 puts token.to_hash
 
+message = "Hello Wolrd".to_json
+
+response = client.call(:dynamic_insert, message: {:sessionToken => token, :typeName => "Abuse", :jsonObject => message})
+
+puts response.to_hash
